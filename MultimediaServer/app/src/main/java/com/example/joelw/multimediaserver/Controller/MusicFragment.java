@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -84,7 +85,7 @@ public class MusicFragment extends Fragment {
                 String sTitle = musicCursor.getString(titleColumn);
                 String sArtist = musicCursor.getString(artistColumn);
                 String sPath= musicCursor.getString(path);
-                musicData.add(new Media(thisId,sArtist,sTitle,sPath));
+                musicData.add(new Media("music",sArtist,sTitle,sPath,R.mipmap.ic_music));
             }
             while (musicCursor.moveToNext());
         }

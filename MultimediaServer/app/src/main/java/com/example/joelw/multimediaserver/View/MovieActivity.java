@@ -15,7 +15,7 @@ import com.example.joelw.multimediaserver.R;
 
 public class MovieActivity extends AppCompatActivity {
     private VideoView video;
-    public TextView movieName;
+    public TextView movieName,moviePath,movieDes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,16 @@ public class MovieActivity extends AppCompatActivity {
 
         video = (VideoView) findViewById(R.id.videoView);
         movieName = (TextView) findViewById(R.id.movieName);
+        moviePath = (TextView) findViewById(R.id.moviePath);
+        movieDes = (TextView) findViewById(R.id.movieDes);
         movieName.setText(media.name);
+        moviePath.setText(media.path);
+        movieDes.setText(media.description);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             video.setMediaController(new MediaController(MovieActivity.this));
         }
-        video.setVideoURI(Uri.parse(media.path));
+        video.setVideoPath(media.path);
     }
 
 }

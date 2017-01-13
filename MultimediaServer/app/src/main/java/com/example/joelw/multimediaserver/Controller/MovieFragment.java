@@ -3,6 +3,7 @@ package com.example.joelw.multimediaserver.Controller;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ public class MovieFragment extends Fragment {
             task.execute(new String[]{MainActivity.sUrl});
             //We're waiting for data from server
             try {
-                task.get(3000, TimeUnit.MILLISECONDS);
+                task.get(1000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -56,6 +57,8 @@ public class MovieFragment extends Fragment {
 
             mListView = (ListView) rootView.findViewById(R.id.movie_list);
             mListView.setOnItemClickListener(new MovieFragment.ListClickHandler());
+            movieData.add(new Media("movie","Film 1", "Video prise en ligne !","http://ia802302.us.archive.org/27/items/Pbtestfilemp4videotestmp4/video_test.mp4",Color.BLUE));
+
             if(movieData!=null) {
                 ViewListAdapter adapter = new ViewListAdapter(getActivity(), movieData, R.layout.list_view);
                 mListView.setAdapter(adapter);

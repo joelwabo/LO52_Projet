@@ -1,6 +1,7 @@
 package com.example.joelw.multimediaserver.View;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.example.joelw.multimediaserver.Model.Media;
 import com.example.joelw.multimediaserver.R;
 
 import java.util.List;
+
+import static android.graphics.drawable.Drawable.createFromPath;
 
 /**
  * Created by joelw on 29/12/2016.
@@ -43,9 +46,18 @@ public class ViewListAdapter extends ArrayAdapter<Media> {
 
         viewHolder.name.setText(media.name);
         viewHolder.description.setText(media.description);
-        //viewHolder.cover.setImageDrawable(new ColorDrawable(media.color));
-        //viewHolder.cover.setImageURI(Uri.parse(media.cover));
-
+        if(media.type.equals("music"))
+            viewHolder.cover.setImageResource(media.id);
+        if(media.type.equals("movie"))
+            if(media.id != -1)
+                viewHolder.cover.setImageDrawable(new ColorDrawable(media.id));
+            else
+                viewHolder.cover.setImageDrawable(createFromPath (media.cover));
+        if(media.type.equals("image"))
+            if(media.id != -1)
+                viewHolder.cover.setImageResource(media.id);
+            else
+                viewHolder.cover.setImageDrawable(createFromPath (media.path));
         return view;
     }
 

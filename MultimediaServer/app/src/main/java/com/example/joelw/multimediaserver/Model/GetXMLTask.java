@@ -58,12 +58,12 @@ public class GetXMLTask extends AsyncTask<String, Void, String> {
                         String path = url.replace("index.php","")+mediaType+"/"+jsonArrMedia.get(0).toString();
                         if(mediaType.equals("movie"))
                         {
-                            mediaData.add(new Media(path+".jpg", jsonArrMedia.get(0).toString(), jsonArrMedia.get(1).toString(),path+".mp4"));
+                            mediaData.add(new Media(mediaType, jsonArrMedia.get(0).toString(), jsonArrMedia.get(1).toString(),path+".mp4",path+".jpg"));
                         }
                         else
                         {
-                            path=path+".JPG";
-                            mediaData.add(new Media(jsonArrMedia.get(0).toString(), jsonArrMedia.get(1).toString(),path));
+                            path=path+".jpg";
+                            mediaData.add(new Media(mediaType, jsonArrMedia.get(0).toString(), jsonArrMedia.get(1).toString(),path));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

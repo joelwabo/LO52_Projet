@@ -48,7 +48,7 @@ public class ImageFragment extends Fragment {
             task.execute(new String[]{MainActivity.sUrl});
             //We're waiting for data from server
             try {
-                task.get(3000, TimeUnit.MILLISECONDS);
+                task.get(1000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -58,8 +58,9 @@ public class ImageFragment extends Fragment {
             }
             imageData = task.getMediaData();
             mListView = (ListView) rootView.findViewById(R.id.image_list);
-            if(imageData!=null) {
+            imageData.add(new Media("image","Anonymous", "", "", R.mipmap.ic_image));
 
+            if(imageData!=null) {
                 ViewListAdapter adapter = new ViewListAdapter(getActivity(), imageData, R.layout.image_view);
                 mListView.setAdapter(adapter);
             }
